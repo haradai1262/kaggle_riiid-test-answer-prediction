@@ -5,3 +5,5 @@ This is the 28th solution of riiid-test-answer-prediction held at Kaggle. We par
 ## Overview
 
 ![overview](./_figure/Overview.png)
+
+More details are described in kaggle discussion [post](https://www.kaggle.com/c/riiid-test-answer-prediction/discussion/210041).
