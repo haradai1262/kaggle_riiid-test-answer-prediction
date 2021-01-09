@@ -1,3 +1,3 @@
-# Solution of [competition name]
+# Solution of riiid-test-answer-prediction
 
 ## Overview

@@ -1,0 +1,85 @@
+common:
+    seed: &seed 2020
+    metrics:
+        name: auc
+        params: {}
+    drop:
+      - lecture_idx
+    debug: False
+    kaggle:
+        data: False
+        notebook: False
+
+model:
+    backbone: transformer_saint_v6_2
+    n_classes: &class 1
+    epochs: &epochs 30
+    params:
+        dim_model: 256
+        num_en: 2
+        num_de: 2
+        heads_en: 8
+        heads_de: 8
+        total_ex: &n_skill 13_523
+        total_cat: 7
+        total_tg: 188
+        total_in: 2
+        total_cnt: 2
+        seq_len: &max_seq 121
+    multi_gpu: True
+    head:
+
+data:
+    train:
+        dataset_type: CustomTrainDataset7_2
+        is_train: True
+        params:
+            n_skill: *n_skill
+            max_seq: *max_seq
+            total_cat: 7
+            total_tg: 188
+            step_len: 150
+            seq_randomness: 0.1
+        loader:
+            shuffle: True
+            batch_size: 512
+            num_workers: 4
+        transforms:
+    valid:
+        dataset_type: CustomTestDataset7_2
+        is_train: False
+        params:
+            n_skill: *n_skill
+            max_seq: *max_seq
+            total_cat: 7
+            total_tg: 188
+        loader:
+            shuffle: False
+            batch_size: 512
+            num_workers: 4
+        transforms:
+    test:
+        dataset_type: CustomTestDataset7_2
+        is_train: False
+        params:
+            n_skill: *n_skill
+            max_seq: *max_seq
+        loader:
+            shuffle: False
+            batch_size: 512
+            num_workers: 4
+        transforms:
+
+loss: 
+    name: BCEWithLogitsLoss
+    params: {}
+
+optimizer:
+    name: Adam
+    params:
+        lr: 0.0005
+
+scheduler:
+    name: CosineAnnealingLR
+    params:
+        T_max: 30
