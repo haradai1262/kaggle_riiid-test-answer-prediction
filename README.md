@@ -4,4 +4,4 @@ This is the 28th solution of riiid-test-answer-prediction held at Kaggle. We par
 
 ## Overview
 
-![overview](./_figure/Overview.jng)
+![overview](./_figure/Overview.png)
